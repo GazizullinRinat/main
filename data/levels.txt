@@ -1,0 +1,1 @@
+LEVEL1;data/map.txt;data/map1.txt;data/map2.txt
