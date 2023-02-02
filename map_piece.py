@@ -4,6 +4,7 @@ import pygame as pg
 class Piece(pg.sprite.Sprite):
     def __init__(self, filename, coordinates):
         pg.sprite.Sprite.__init__(self)
+        print(filename)
         image = pg.image.load(filename)
         self.image = pg.transform.scale(image, (128, 128))
         self.image.set_colorkey((255, 255, 255))

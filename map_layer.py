@@ -14,6 +14,7 @@ class MapLayer(const.Const):
                 if elem == "0":
                     continue
                 for k in elem.split('/'):
+                    print(k)
                     self.sprites.add(map_piece.Piece(self.types_interior.get(k), self.get_coordinates(i, j)))
 
     def get_coordinates(self, y, x):

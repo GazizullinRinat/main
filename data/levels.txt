@@ -1,1 +1,2 @@
 LEVEL1;data/map.txt;data/map1.txt;data/map2.txt
+LEVEL2;data/map.l2.txt;data/map.l21.txt;data/map.l22.txt

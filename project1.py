@@ -15,6 +15,7 @@ class Board(const.Const):
         f = open(filename)
         self.cell_size = 128
         self.x, self.y = 0, 0
+        self.sprites = pg.sprite.Group()
         for i, line in enumerate(f.readlines()):
             for j, elem in enumerate(line.strip('\n').split(';')):
                 if elem == '2':
@@ -65,6 +66,7 @@ class Game(Board, user_interface.Pause, user_interface.Menu):
         self.is_menu = False
         self.paused = False
         self.playing = True
+        
         for i in self.levels:
             if i[0] == level_name:
                 self.open(i[1])
@@ -149,7 +151,7 @@ class Game(Board, user_interface.Pause, user_interface.Menu):
                 self.player.flying = False
                 self.player.check_acc()
                 self.camera_coordinates[1] += (self.player.rect.bottomright[1] //
-                                               self.ce ll_size - 2) * self.cell_size - self.player.rect.y
+                                               self.cell_size - 2) * self.cell_size - self.player.rect.y
                 self.player.y = (self.player.rect.bottomright[1] // self.cell_size - 2) * self.cell_size
                 self.player.change()
         if not len(pg.sprite.spritecollide(self.player.up_border, self.sprites, False)) == 0:
@@ -286,13 +288,14 @@ while True:
                 game.jump()
                 game.player.change()
             if keys[pg.K_a]:
-                game.camera_coordinates[0] -= 10
+                game.camera_coordinates[0] -= 30
             if keys[pg.K_w]:
-                game.camera_coordinates[1] -= 10
+                game.camera_coordinates[1] -= 30
             if keys[pg.K_d]:
-                game.camera_coordinates[0] += 10
+                game.camera_coordinates[0] += 30
             if keys[pg.K_s]:
-                game.camera_coordinates[1] += 10
+                game.camera_coordinates[1] += 30
+                print('wret')
             if keys[pg.K_q]:
                 print("123")
                 break
@@ -302,7 +305,7 @@ while True:
         game.render(screen)
         if game.playing:
             game.check()
-            text1 = f.render(str(round(clock.get_fps())) + " FPS", True, (0, 200, 0))
+            text1 = f.render(str(round(clock.get_fps()) + 10000) + " FPS", True, (0, 200, 0))
             rect = text1.get_rect(topleft=(11, 11))
             pg.draw.rect(screen, '#808080', rect)
             screen.blit(text1, rect)
